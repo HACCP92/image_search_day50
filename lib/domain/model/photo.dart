@@ -1,17 +1,20 @@
-import 'package:image_search_day49/data/dto/pixabay_result_dto.dart';
-import 'package:image_search_day49/domain/model/photo.dart';
-import 'package:image_search_day50/data/dto/pixabay_result_dto.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-extension ToPhoto on Hits {
-  Photo toPhoto() {
-    return Photo(
-      id: id ?? 0,
-      views: views ?? 0,
-      likes: likes ?? 0,
-      webformatURL: webformatURL ?? '',
-      tags: tags ?? '',
-      user: user ?? '',
-      userImageURL: userImageURL ?? '',
-    );
-  }
+part 'photo.freezed.dart';
+
+part 'photo.g.dart';
+
+@freezed
+class Photo with _$Photo {
+  const factory Photo({
+    required num id,
+    required num views,
+    required num likes,
+    required String webformatURL,
+    required String tags,
+    required String user,
+    required String userImageURL,
+  }) = _Photo;
+  factory Photo.fromJson(Map<String, Object> json) => _$PhotoFromJson(json);
 }
